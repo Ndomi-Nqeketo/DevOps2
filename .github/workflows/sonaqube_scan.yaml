@@ -28,6 +28,14 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Install SonarQube Scanner
+        run: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+            unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+            sudo mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
+            echo 'export PATH="$PATH:/opt/sonar-scanner/bin"' >> ~/.bashrc
+            source ~/.bashrc      
+
       - name: Build and analyze
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Needed to get PR information, if any ..
