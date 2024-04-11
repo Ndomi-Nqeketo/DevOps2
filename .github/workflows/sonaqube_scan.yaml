@@ -38,7 +38,7 @@ jobs:
 
       - name: Build and analyze
         env:
-          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Needed to get PR information, if any ..
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Needed to get PR information, if any ..
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
             sonar-scanner -Dsonar.projectKey="Test Scanning" -Dsonar.sources=. -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
